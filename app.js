@@ -10,6 +10,8 @@ const users = require('./routes/users');
 const auth = require('./routes/auth');
 const main = require('./routes/main');
 
+require('dotenv').config();
+
 var app = express();
 
 // view engine setup
