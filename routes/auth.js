@@ -9,12 +9,15 @@ router.post("/login", (req, res, next) => {
   const password = req.body.password;
 
   if (username === "rahul" && password === "nair") {
-    const accessToken = jwt.sign(username, process.env.JWT_SECRET);
+    const accessToken = jwt.sign("username", process.env.JWT_SECRET);
     const refreshToken = randomstring.generate(48);
-    res.status(200).json({
-      accessToken: accessToken,
-      refreshToken: refreshToken
-    });
+    res
+      .contentType("application/json")
+      .status(200)
+      .json({
+        accessToken,
+        refreshToken
+      });
   } else {
     const err = new Error("authentication failed");
     err.status = 400;
