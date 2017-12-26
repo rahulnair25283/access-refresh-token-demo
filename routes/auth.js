@@ -9,7 +9,15 @@ router.post("/login", (req, res, next) => {
   const password = req.body.password;
 
   if (username === "rahul" && password === "nair") {
-    const accessToken = jwt.sign("username", process.env.JWT_SECRET);
+    const accessToken = jwt.sign(
+      {
+        username
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: 20
+      }
+    );
     const refreshToken = randomstring.generate(48);
     res
       .contentType("application/json")
